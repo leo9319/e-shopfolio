@@ -6,8 +6,12 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Products</h2>
         </template>
 
-        <div class="mt-12 mb-24 w-11/12 mx-auto border-t rounded">
-            <div class="flex flex-col">
+        <div class="mt-12 mb-24 w-11/12 mx-auto">
+            <div class="flex justify-end">
+                <button class="btn btn-blue btn-size-sm mb-2">Add Product</button>
+            </div>
+
+            <div class="flex flex-col border-t rounded">
                 <div class="overflow-x-auto shadow-md sm:rounded-lg">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden ">

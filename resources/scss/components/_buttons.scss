@@ -1,0 +1,68 @@
+.btn {
+    @apply hover:no-underline inline-flex flex-row items-center space-x-1 justify-center;
+    &-light {
+        @apply px-2 hover:opacity-70;
+        &-blue {
+            @apply text-blue-500;
+        }
+
+        &-red {
+            @apply text-red-500;
+        }
+
+        &-gray {
+
+        }
+
+        &-white {
+            @apply rounded hover:bg-white hover:text-blue-500 cursor-pointer text-white border border-white;
+        }
+    }
+
+    &-blue {
+        @apply bg-blue-500 text-white px-3 py-2 rounded hover:opacity-90;
+        &-outline {
+            @apply bg-transparent text-blue-500 border border-blue-500 px-3 py-2 rounded hover:opacity-90
+        }
+    }
+
+    &-gray {
+        @apply bg-gray-200 text-gray-700 px-6 py-2 rounded border border-gray-400 hover:bg-gray-300 hover:text-gray-500;
+    }
+
+    &-yellow {
+        @apply bg-yellow-500 text-gray-900 px-6 py-2 rounded border border-yellow-600 hover:bg-yellow-600 hover:text-gray-800;
+    }
+
+    &-green {
+        @apply bg-green-500 text-white px-6 py-2 rounded border border-green-600 hover:bg-green-600 hover:text-gray-100;
+    }
+
+    &-h-full {
+        @apply h-full
+    }
+
+    &-block {
+        @apply w-full;
+    }
+
+    &-red {
+        @apply bg-red-600 text-white px-3 py-2 rounded hover:opacity-90;
+        &-outline {
+            @apply bg-transparent text-red-600 border border-red-600 px-3 py-2 rounded hover:opacity-90
+        }
+    }
+
+    &-size {
+        &-xs {
+            @apply text-xs px-2 py-1;
+        }
+
+        &-sm {
+            @apply text-sm px-3 py-2;
+        }
+    }
+}
+.global-menu-btn {
+    @apply h-14 w-14 leading-4 text-lg bg-gray-300 hover:bg-gray-400 hover:shadow text-black rounded-full flex flex-row items-center justify-center;
+}
