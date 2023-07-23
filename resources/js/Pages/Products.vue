@@ -45,7 +45,6 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                <!-- Iterate over the products array and create rows -->
                                 <tr v-for="product in products.data" :key="product.id" class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="p-4 w-4">
                                         <div class="flex items-center">
@@ -72,8 +71,13 @@
                                     <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ product.quantity }}
                                     </td>
-                                    <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    <td class="py-4 px-6 text-sm text-right whitespace-nowrap space-x-2">
+                                        <a href="#" class="text-blue-600">
+                                            <i class="lni lni-pencil-alt"></i>
+                                        </a>
+                                        <a href="#" class="text-red-600">
+                                            <i class="lni lni-trash-can"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -95,8 +99,6 @@
                 </template>
             </div>
         </div>
-
-
     </AuthenticatedLayout>
 </template>
 
