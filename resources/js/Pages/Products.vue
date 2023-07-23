@@ -82,14 +82,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 text-center">
+            <div class="mt-4 text-center pb-5">
                 <template v-for="link in products.links">
                     <Link
                         v-if="link.url"
                         :href="link.url"
                         v-html="link.label"
                         class="px-2"
-                        :class="{ 'text-gray-500' : link.url, 'font-bold' : link.active }"
+                        :class="{ 'text-gray-500' : link.url, 'font-extrabold' : link.active }"
                     />
                     <span v-else v-html="link.label"></span>
                 </template>
