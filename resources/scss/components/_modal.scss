@@ -1,0 +1,40 @@
+.modal {
+    @apply flex flex-col relative shadow rounded bg-white mx-auto my-auto;
+    min-width: 40vw;
+    width: 800px;
+    max-width: 90vw;
+    max-height: 90vh;
+    min-height: 30vh;
+    margin-top: 10%;
+
+
+    &-large {
+        min-width: 60vw;
+        width: 95vw;
+    }
+
+    &-header {
+        @apply px-6 py-3 flex justify-between items-center border;
+        &-title {
+            @apply text-2xl;
+        }
+    }
+
+    &-content {
+        @apply flex-grow px-6 py-3 flex flex-col space-y-4 relative;
+    }
+
+    &-footer {
+        @apply px-6 py-3 bg-gray-700 text-white rounded-b flex items-center justify-between;
+    }
+}
+
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    overflow-y: scroll;
+}

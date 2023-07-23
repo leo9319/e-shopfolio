@@ -6,9 +6,20 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Products</h2>
         </template>
 
+        <modal-wrapper v-model="showAddModal"></modal-wrapper>
+
+<!--        <vue-final-modal v-model="showAddModal">-->
+<!--            <form @submit="handleSubmit" class="w-1/2 bg-white mx-auto">-->
+<!--                &lt;!&ndash; Form inputs for adding a new product &ndash;&gt;-->
+<!--                &lt;!&ndash; ... (your form inputs) ... &ndash;&gt;-->
+<!--                <button type="submit">Add Product</button>-->
+<!--                <button @click="showAddModal = false">Cancel</button>-->
+<!--            </form>-->
+<!--        </vue-final-modal>-->
+
         <div class="mt-12 mb-24 w-11/12 mx-auto">
             <div class="flex justify-end">
-                <button class="btn btn-blue btn-size-sm mb-2">Add Product</button>
+                <button class="btn btn-blue btn-size-sm mb-2" @click.prevent="showAddModal = true">Add Product</button>
             </div>
 
             <div class="flex flex-col border-t rounded">
@@ -108,8 +119,9 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
-import { Link } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
+import {ref} from 'vue';
+import ModalWrapper from "@/Components/ModalWrapper.vue";
 
 const props = defineProps({
     products: {
@@ -117,4 +129,14 @@ const props = defineProps({
         required: true,
     },
 });
+
+const showAddModal = ref(false);
+
+const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle the form submission here, e.g., add the new product
+    // After successfully adding the product, close the modal
+    showAddModal.value = false;
+};
+
 </script>
