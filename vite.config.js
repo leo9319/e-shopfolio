@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
+import path from "path";
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: 'resources/js/app.js',
+            input: ['resources/scss/app.scss', 'resources/js/app.js'],
             ssr: 'resources/js/ssr.js',
             refresh: true,
         }),
@@ -18,4 +19,14 @@ export default defineConfig({
             },
         }),
     ],
+    css: {
+        devSourcemap: true,
+        postcss: {
+            plugins: [
+                require("tailwindcss")({
+                    config: path.resolve(__dirname, "tailwind.config.js"),
+                }),
+            ],
+        },
+    },
 });

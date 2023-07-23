@@ -39,6 +39,8 @@ defineProps({
             </template>
         </div>
 
+        <h1 class="kutta">hello</h1>
+
 
     </div>
 </template>
