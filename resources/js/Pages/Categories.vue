@@ -6,8 +6,13 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Categories</h2>
         </template>
 
-        <div class="mt-12 mb-24 w-11/12 mx-auto border-t rounded">
-            <div class="flex flex-col">
+        <AddCategory v-model="showAddModal" />
+
+        <div class="mt-12 mb-24 w-11/12 mx-auto">
+            <div class="flex justify-end">
+                <button class="btn btn-blue btn-size-sm mb-2" @click.prevent="showAddModal = true">Add Category</button>
+            </div>
+            <div class="flex flex-col border-t rounded">
                 <div class="overflow-x-auto shadow-md sm:rounded-lg">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden ">
@@ -94,6 +99,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
+import {ref} from "vue";
+import AddCategory from "../Components/Modals/AddCategory.vue";
 
 const props = defineProps({
     categories: {
@@ -101,4 +108,6 @@ const props = defineProps({
         required: true,
     },
 });
+
+const showAddModal = ref(false);
 </script>

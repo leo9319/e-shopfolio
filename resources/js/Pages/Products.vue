@@ -111,9 +111,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
-import {VueFinalModal} from "vue-final-modal";
 import {ref} from 'vue';
-import ModalWrapper from "@/Components/ModalWrapper.vue";
 import AddProduct from "../Components/Modals/AddProduct.vue";
 
 const props = defineProps({
@@ -124,7 +122,5 @@ const props = defineProps({
 });
 
 const showAddModal = ref(false);
-
-
 
 </script>

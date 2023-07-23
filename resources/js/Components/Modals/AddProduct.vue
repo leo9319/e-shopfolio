@@ -54,14 +54,6 @@
 </template>
 
 <script setup>
-import {VueFinalModal} from "vue-final-modal";
 import ModalWrapper from "@/Components/ModalWrapper.vue";
-
-const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle the form submission here, e.g., add the new product
-    // After successfully adding the product, close the modal
-    showAddModal.value = false;
-};
 
 </script>
