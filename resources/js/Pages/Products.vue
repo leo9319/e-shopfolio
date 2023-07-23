@@ -6,40 +6,97 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Products</h2>
         </template>
 
-        <div class="pt-12 pb-8 flex justify-center">
-            <table class="table-auto bg-white">
-                <thead>
-                <tr>
-                    <th class="px-4 py-2">ID</th>
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Description</th>
-                    <th class="px-4 py-2">Price</th>
-                    <th class="px-4 py-2">Quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="product in products.data" :key="product.id">
-                    <td class="border px-4 py-2">{{ product.id }}</td>
-                    <td class="border px-4 py-2">{{ product.name }}</td>
-                    <td class="border px-4 py-2">{{ product.description }}</td>
-                    <td class="border px-4 py-2">{{ product.price }}</td>
-                    <td class="border px-4 py-2">{{ product.quantity }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="text-center">
-            <template v-for="link in products.links">
-                <Link
-                    v-if="link.url"
-                    :href="link.url"
-                    v-html="link.label"
-                    class="px-1"
-                    :class="{ 'text-gray-500' : link.url, 'font-bold' : link.active }"
+        <div class="mt-12 mb-24 w-11/12 mx-auto border-t rounded">
+            <div class="flex flex-col">
+                <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                    <div class="inline-block min-w-full align-middle">
+                        <div class="overflow-hidden ">
+                            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                <tr>
+                                    <th scope="col" class="p-4">
+                                        <div class="flex items-center">
+                                            <input
+                                                id="checkbox-all"
+                                                type="checkbox"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            />
+                                            <label for="checkbox-all" class="sr-only">checkbox</label>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Product Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Description
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Category
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Price
+                                    </th>
+                                    <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Quantity
+                                    </th>
+                                    <th scope="col" class="p-4">
+                                        <span class="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                <!-- Iterate over the products array and create rows -->
+                                <tr v-for="product in products.data" :key="product.id" class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <td class="p-4 w-4">
+                                        <div class="flex items-center">
+                                            <input
+                                                :id="'checkbox-table-' + product.id"
+                                                type="checkbox"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            />
+                                            <label :for="'checkbox-table-' + product.id" class="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ product.name }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                        {{ product.description }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                        {{ product.category.name }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        ${{ product.price }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ product.quantity }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 text-center">
+                <template v-for="link in products.links">
+                    <Link
+                        v-if="link.url"
+                        :href="link.url"
+                        v-html="link.label"
+                        class="px-2"
+                        :class="{ 'text-gray-500' : link.url, 'font-bold' : link.active }"
                     />
-                <span v-else v-html="link.label"></span>
-            </template>
+                    <span v-else v-html="link.label"></span>
+                </template>
+            </div>
         </div>
+
+
     </AuthenticatedLayout>
 </template>
 
@@ -52,7 +109,6 @@ const props = defineProps({
     products: {
         type: Array,
         required: true,
-    }
+    },
 });
-
 </script>
