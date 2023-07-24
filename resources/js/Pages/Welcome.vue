@@ -1,14 +1,3 @@
-<script setup>
-import { Head, Link } from '@inertiajs/vue3';
-
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-});
-</script>
-
 <template>
     <Head title="Welcome" />
 
@@ -40,12 +29,23 @@ defineProps({
             </template>
         </div>
 
-        <button class="border-2 border-gray-900 hover:opacity-50 text-black font-bold py-2 px-4 rounded animate-bounce">
+        <Link :href="route('home')" class="border-2 border-gray-900 hover:opacity-50 text-black font-bold py-2 px-4 rounded animate-bounce">
             Start Shopping!
-        </button>
+        </Link>
 
     </div>
 </template>
+
+<script setup>
+import { Head, Link } from '@inertiajs/vue3';
+
+defineProps({
+    canLogin: Boolean,
+    canRegister: Boolean,
+    laravelVersion: String,
+    phpVersion: String,
+});
+</script>
 
 <style>
 .bg-dots-darker {

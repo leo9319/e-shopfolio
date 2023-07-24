@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,7 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 require __DIR__.'/auth.php';
