@@ -3,12 +3,15 @@
 
     <div class="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-dots-darker bg-center dark:bg-dots-lighter selection:bg-red-500 selection:text-white" style="background-image: url('/images/landing.jpg')">
         <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Dashboard</Link
-            >
+            <template v-if="$page.props.auth.user ">
+                <Link
+                    v-if="userRoles.some(role => role === 'admin')"
+                    :href="route('dashboard')"
+                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                >Admin Dashboard</Link
+                >
+            </template>
+
 
             <template v-else>
                 <Link
@@ -41,6 +44,7 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    userRoles: Array,
 });
 </script>
 

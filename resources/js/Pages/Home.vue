@@ -26,6 +26,12 @@
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="$page.props.auth.user">
                             <!-- Settings Dropdown -->
+
+                            <div class="flex items-center space-x-2">
+                                <!-- Shopping cart icon -->
+                                <i class="lni lni-cart text-2xl text-gray-600 dark:text-gray-400"></i>
+                            </div>
+
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
@@ -120,7 +126,7 @@
                 >
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            Admin Dashboard
                         </ResponsiveNavLink>
                     </div>
 
