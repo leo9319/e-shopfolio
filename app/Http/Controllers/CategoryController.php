@@ -15,4 +15,8 @@ class CategoryController extends Controller
             'categories' => $categories,
         ]);
     }
+
+    public function getAll() {
+        return Category::all();
+    }
 }

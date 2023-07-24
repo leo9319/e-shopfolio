@@ -12,7 +12,7 @@
                 <div class="form-row flex items-center">
                     <div class="w-1/4 required">Product Category</div>
                     <div class="w-3/4">
-                        <input type="text" class="input-text" placeholder="Product Category...">
+                        <Multiselect :options="categories" label="name" value-prop="id"></Multiselect>
                     </div>
                 </div>
                 <div class="form-row flex items-center">
@@ -55,5 +55,24 @@
 
 <script setup>
 import ModalWrapper from "@/Components/ModalWrapper.vue";
+import Multiselect from '@vueform/multiselect';
+import {onMounted} from "vue";
+
+defineProps({
+    categories: {
+        type: Array,
+        default: []
+    }
+})
+
+onMounted(() => {
+
+    // const apiToken = '8dd40f2690e0f8e606893bf95bd15ee0f26087801d3c2a28c9d3672079ecf437';
+    // console.log(apiToken)
+    //
+    axios.defaults.headers.common['Authorization'] = `Bearer 3|ukrKHiwBK6dUM3fJ98HKOUeStt8b8bYQSwoLhwKV`;
+
+    axios.get('api/categories/getAll').then(response => console.log(response))
+})
 
 </script>

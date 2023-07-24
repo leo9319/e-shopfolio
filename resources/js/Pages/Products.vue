@@ -6,7 +6,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Products</h2>
         </template>
 
-        <AddProduct v-model="showAddModal"></AddProduct>
+        <AddProduct v-model="showAddModal" :categories="categories"></AddProduct>
 
         <div class="mt-12 mb-24 w-11/12 mx-auto">
             <div class="flex justify-end">
@@ -116,6 +116,10 @@ import AddProduct from "../Components/Modals/AddProduct.vue";
 
 const props = defineProps({
     products: {
+        type: Array,
+        required: true,
+    },
+    categories: {
         type: Array,
         required: true,
     },
