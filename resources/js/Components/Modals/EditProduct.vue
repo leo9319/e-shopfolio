@@ -1,13 +1,12 @@
 <template>
     <modal-wrapper name="add-modal">
-        <template #title>Add Product</template>
+        <template #title>Edit Product: {{ product.name }}</template>
         <template #content>
             <form action="#" class="space-y-4">
                 <div class="form-row flex items-center">
                     <div class="w-1/4 required">Product Name</div>
                     <div class="w-3/4">
-                        <input type="text" class="input-text" placeholder="Product Name..." v-model="form.product_name">
-                        <form-error :errors="errors" property="name"></form-error>
+                        <input type="text" class="input-text" placeholder="Product Name..." v-model="form.name">
                     </div>
                 </div>
                 <div class="form-row flex items-center">
@@ -46,55 +45,46 @@
             </form>
         </template>
         <template #footer>
-            <button class="btn btn-blue" @click.prevent="addClickHandle">Add Product</button>
+            <button class="btn btn-blue" @click.prevent="editClickHandle">Update Product</button>
         </template>
     </modal-wrapper>
 </template>
 
 <script setup>
 import ModalWrapper from "@/Components/ModalWrapper.vue";
+import { reactive, watch, ref, defineEmits } from "vue";
+import _ from 'lodash';
 import Multiselect from '@vueform/multiselect';
-import {ref, defineEmits} from "vue";
 import FormError from "@/Components/FormError.vue";
+import axios from 'axios'; // Import Axios for API calls
 
-defineProps({
+const props = defineProps({
     categories: {
-        type: Array,
-        default: []
+        type: Object,
+        default: () => ({})
+    },
+    product: {
+        type: Object,
+        default: () => ({})
     }
 });
-
 const selectedImage = ref(null);
-
+const form = ref([]);
+const errors = ref([]);
 const emits = defineEmits(["update:modelValue"]);
 
 const onFileChange = (event) => {
     selectedImage.value = event.target.files[0];
 };
 
-const form = ref({
-    product_name: '',
-    category_id: '',
-    description: '',
-    price: '',
-    quantity: '',
-    image: ''
-});
-
-const errors = ref([])
-
-const addClickHandle = () => {
-
-    errors.value = [];
-
-    console.log(selectedImage.value)
-
+const editClickHandle = () => {
+    // Convert form data to FormData object for sending the image
     const formData = new FormData();
-    formData.append('name', form.value.product_name);
-    formData.append('category_id', form.value.category_id);
+    formData.append('name', form.value.name);
     formData.append('description', form.value.description);
     formData.append('price', form.value.price);
     formData.append('quantity', form.value.quantity);
+    formData.append('category_id', form.value.category_id);
     formData.append('image', selectedImage.value);
 
     const formDataObject = {};
@@ -103,21 +93,27 @@ const addClickHandle = () => {
     }
     console.log(formDataObject);
 
-
-    axios.post('/products', formData, {
+    // Send PUT request to the API to update the product
+    axios.post(`/products/${props.product.id}`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     })
         .then(response => {
-            console.log(response)
-            form.value = [];
-            selectedImage.value = '';
             emits('update:modelValue', false);
         })
         .catch(error => {
-            errors.value = error.response.data.errors;
+            // Handle the error response
+            console.error(error);
+            if (error.response && error.response.status === 422) {
+                errors.value = error.response.data.errors;
+                console.log(errors.value); // Log the validation errors to the console
+            }
         });
-}
+};
 
+
+watch(() => props.product, () => {
+    form.value = _.clone(props.product);
+});
 </script>

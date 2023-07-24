@@ -7,6 +7,7 @@
         </template>
 
         <AddProduct v-model="showAddModal" :categories="categories"></AddProduct>
+        <EditProduct v-model="showEditModal" :product="product" :categories="categories"></EditProduct>
 
         <div class="mt-12 mb-24 w-11/12 mx-auto">
             <div class="flex justify-end">
@@ -78,9 +79,9 @@
                                         {{ product.quantity }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-right whitespace-nowrap space-x-2">
-                                        <a href="#" class="text-blue-600">
+                                        <button class="text-blue-600" @click.prevent="editClickHandle(product)">
                                             <i class="lni lni-pencil-alt"></i>
-                                        </a>
+                                        </button>
                                         <button class="text-red-600" @click.prevent="deleteClickHandle(product.id)">
                                             <i class="lni lni-trash-can"></i>
                                         </button>
@@ -113,6 +114,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import {ref} from 'vue';
 import AddProduct from "../Components/Modals/AddProduct.vue";
+import EditProduct from "../Components/Modals/EditProduct.vue";
 import Swal from 'sweetalert2';
 
 const props = defineProps({
@@ -128,6 +130,9 @@ const props = defineProps({
 });
 
 const showAddModal = ref(false);
+const showEditModal = ref(false);
+
+const product = ref();
 
 const deleteClickHandle = (product_id) => {
     Swal.fire({
@@ -147,6 +152,11 @@ const deleteClickHandle = (product_id) => {
         }
     });
 
+}
+
+const editClickHandle = (item) => {
+    product.value = item;
+    showEditModal.value = true
 }
 
 </script>
