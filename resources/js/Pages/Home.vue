@@ -159,7 +159,7 @@
                                             </svg>
                                         </div>
                                         <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                            <p tabindex="0" class="focus:outline-none text-xs text-yellow-700 cursor-pointer">Add to Cart</p>
+                                            <button class="focus:outline-none text-xs text-yellow-700 cursor-pointer" @click.prevent="addToCart">Add to Cart</button>
                                         </div>
                                     </div>
                                     <div class="p-4">
@@ -186,17 +186,32 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import NavLink from '@/Components/NavLink.vue';
 import {Head, Link} from '@inertiajs/vue3';
-import {ref} from "vue";
+import {ref, getCurrentInstance} from "vue";
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import Swal from 'sweetalert2';
 
 const showingNavigationDropdown = ref(false);
+const instance = getCurrentInstance();
 
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     products: Object
 });
+
+const addToCart = () => {
+
+    if(instance.proxy.$page.props.auth.user === null) {
+        Swal.fire({
+            title: 'Please log in/register to add to cart!',
+            html: `<div class="py-4"><a href="/login" type="text" class="rounded">Log in</a> <a href="/register" class="rounded">Register</a></div>`,
+            showConfirmButton: false
+        })
+    }
+
+
+}
 </script>
 
