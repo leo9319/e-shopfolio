@@ -116,7 +116,8 @@ import AddProduct from "../Components/Modals/AddProduct.vue";
 
 const props = defineProps({
     products: {
-        type: Array,
+        type: Object,
+        default: () => ({}),
         required: true,
     },
     categories: {
