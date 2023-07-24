@@ -1,10 +1,7 @@
 <template>
     <Head title="Welcome" />
 
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-cover bg-dots-darker bg-center dark:bg-dots-lighter selection:bg-red-500 selection:text-white"
-        style="background-image: url('/images/landing.jpg')"
-    >
+    <div class="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-dots-darker bg-center dark:bg-dots-lighter selection:bg-red-500 selection:text-white" style="background-image: url('/images/landing.jpg')">
         <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
             <Link
                 v-if="$page.props.auth.user"
@@ -16,20 +13,20 @@
             <template v-else>
                 <Link
                     :href="route('login')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="font-semibold hover:text-gray-900 text-gray-900 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Log in</Link
                 >
 
                 <Link
                     v-if="canRegister"
                     :href="route('register')"
-                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    class="ml-4 font-semibold hover:text-gray-900 text-gray-900 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                     >Register</Link
                 >
             </template>
         </div>
 
-        <Link :href="route('home')" class="border-2 border-gray-900 hover:opacity-50 text-black font-bold py-2 px-4 rounded animate-bounce">
+        <Link :href="route('home')" class="border-2 border-gray-900 hover:opacity-50 text-black font-bold py-2 px-4 rounded animate-bounce flex items-center justify-center max-w-xs mx-auto">
             Start Shopping!
         </Link>
 
