@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,6 +63,32 @@ class ProductController extends Controller
         return response()->json([
             'message' => 'Product created successfully!',
             'product' => $product,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        // Find the product by ID
+        $product = Product::find($id);
+
+        // Check if the product exists
+        if (!$product) {
+            return response()->json([
+                'error' => 'Product not found!',
+            ], Response::HTTP_NOT_FOUND); // HTTP 404 Not Found status code
+        }
+
+        // Delete the associated image from storage if it exists
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        // Delete the product from the database
+        $product->delete();
+
+        // Return a JSON response with a success message
+        return response()->json([
+            'message' => 'Product deleted successfully!',
         ]);
     }
 }

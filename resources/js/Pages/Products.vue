@@ -81,7 +81,7 @@
                                         <a href="#" class="text-blue-600">
                                             <i class="lni lni-pencil-alt"></i>
                                         </a>
-                                        <button class="text-red-600" @click.prevent="deleteClickHandle">
+                                        <button class="text-red-600" @click.prevent="deleteClickHandle(product.id)">
                                             <i class="lni lni-trash-can"></i>
                                         </button>
                                     </td>
@@ -129,7 +129,7 @@ const props = defineProps({
 
 const showAddModal = ref(false);
 
-const deleteClickHandle = () => {
+const deleteClickHandle = (product_id) => {
     Swal.fire({
         title: 'Are you sure you want to delete this product?',
         icon: 'warning',
@@ -139,7 +139,9 @@ const deleteClickHandle = () => {
         confirmButtonColor: '#e74c3c',
     }).then((result) => {
         if (result.isConfirmed) {
-            alert('delete')
+            axios.delete(`/products/${product_id}`)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
         } else {
             // The user clicked "No" button, do nothing or handle accordingly
         }
