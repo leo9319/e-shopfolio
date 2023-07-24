@@ -13,7 +13,8 @@ defineProps({
     <Head title="Welcome" />
 
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-cover bg-dots-darker bg-center dark:bg-dots-lighter selection:bg-red-500 selection:text-white"
+        style="background-image: url('/images/landing.jpg')"
     >
         <div v-if="canLogin" class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
             <Link
@@ -38,6 +39,10 @@ defineProps({
                 >
             </template>
         </div>
+
+        <button class="border-2 border-gray-900 hover:opacity-50 text-black font-bold py-2 px-4 rounded animate-bounce">
+            Start Shopping!
+        </button>
 
     </div>
 </template>

@@ -17,6 +17,10 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                background-image: url("public/images/landing.jpg");
+                background-size: cover;
+                background-position: center;
+                /* Add any additional background properties here if needed */
             }
         </style>
     </head>
