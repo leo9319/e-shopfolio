@@ -142,15 +142,11 @@
                     </div>
                 </div>
             </nav>
-
-
-
-
             <main>
                 <div tabindex="0" class="focus:outline-none">
-                    <div class="mx-auto container py-8">
+                    <div class="mx-auto container">
                         <div class="flex flex-wrap items-center lg:justify-between justify-center">
-                            <div tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 mb-8">
+                            <div tabindex="0" class="focus:outline-none mx-2 w-72 xl:mb-0 my-8" v-for="product in products.data">
                                 <div>
                                     <img alt="person capturing an image" src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" tabindex="0" class="focus:outline-none w-full h-44" />
                                 </div>
@@ -159,7 +155,7 @@
                                         <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" tabindex="0" class="focus:outline-none" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2"></path>
+                                                <path d="Mee9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2"></path>
                                             </svg>
                                         </div>
                                         <div class="bg-yellow-200 py-1.5 px-6 rounded-full">
@@ -211,6 +207,7 @@ const showingNavigationDropdown = ref(false);
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
+    products: Object
 });
 </script>
 

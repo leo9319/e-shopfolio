@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index() {
 
-        $products = Product::with('category')->paginate(10);
+        $products = Product::with('category')->paginate(8);
 
         return Inertia::render('Home', [
             'products' => $products,
