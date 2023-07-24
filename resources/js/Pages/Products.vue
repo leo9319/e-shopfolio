@@ -81,9 +81,9 @@
                                         <a href="#" class="text-blue-600">
                                             <i class="lni lni-pencil-alt"></i>
                                         </a>
-                                        <a href="#" class="text-red-600">
+                                        <button class="text-red-600" @click.prevent="deleteClickHandle">
                                             <i class="lni lni-trash-can"></i>
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -113,6 +113,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import {ref} from 'vue';
 import AddProduct from "../Components/Modals/AddProduct.vue";
+import Swal from 'sweetalert2';
 
 const props = defineProps({
     products: {
@@ -127,5 +128,23 @@ const props = defineProps({
 });
 
 const showAddModal = ref(false);
+
+const deleteClickHandle = () => {
+    Swal.fire({
+        title: 'Are you sure you want to delete this product?',
+        icon: 'warning',
+        showCancelButton: true, // Display the "Cancel" button
+        confirmButtonText: 'Yes', // Text for the "Yes" button
+        cancelButtonText: 'No', // Text for the "No" button
+        confirmButtonColor: '#e74c3c',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            alert('delete')
+        } else {
+            // The user clicked "No" button, do nothing or handle accordingly
+        }
+    });
+
+}
 
 </script>
